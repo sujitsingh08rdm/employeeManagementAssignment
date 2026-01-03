@@ -1,22 +1,13 @@
 {
   "employees": [
     {
-      "id": "24a2",
-      "name": "Suji",
+      "id": "6906",
+      "name": "da",
       "gender": "male",
-      "dob": "2026-01-12",
-      "state": "Delhi",
+      "dob": "2026-01-11",
+      "state": "Bihar",
       "status": "active",
-      "image": "blob:http://localhost:5173/28fca5c1-cba3-4891-b7ea-36c536772317"
-    },
-    {
-      "id": "db82",
-      "name": "Simi Prasad",
-      "gender": "female",
-      "dob": "2025-11-10",
-      "state": "West Bengal",
-      "status": "inactive",
-      "image": "blob:http://localhost:5173/7c717fa4-acee-4081-8667-02ad29f8cd4e"
+      "image": "blob:http://localhost:5173/32b64bf3-bafe-4a7b-a747-c6df159ec2c0"
     }
   ],
   "users": [

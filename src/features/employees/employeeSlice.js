@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   addEmployee,
+  deleteEmployee,
   fetchEmployeeById,
   fetchEmployees,
+  updateEmployee,
 } from "../../api/employeeService";
 
 export const getEmployees = createAsyncThunk(
@@ -34,6 +36,29 @@ export const createEmployee = createAsyncThunk(
       return await addEmployee(data);
     } catch (error) {
       return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editEmployee = createAsyncThunk(
+  "employees/update",
+  async ({ id, data }, { rejectWithValue }) => {
+    try {
+      return await updateEmployee(id, data);
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const removeEmployee = createAsyncThunk(
+  "employees/delete",
+  async (id, { rejectWithValue }) => {
+    try {
+      await deleteEmployee(id);
+      return id;
+    } catch (error) {
+      rejectWithValue(error.message);
     }
   }
 );
@@ -70,6 +95,17 @@ const employeeSlice = createSlice({
       })
       .addCase(createEmployee.fulfilled, (state, action) => {
         state.list.push(action.payload);
+      })
+      .addCase(editEmployee.fulfilled, (state, action) => {
+        const index = state.list.findIndex(
+          (emp) => emp.id === action.payload.id
+        );
+        if (index !== -1) {
+          state.list[index] = action.payload;
+        }
+      })
+      .addCase(removeEmployee.fulfilled, (state, action) => {
+        state.list = state.list.filter((emp) => emp.id !== action.payload);
       });
   },
 });

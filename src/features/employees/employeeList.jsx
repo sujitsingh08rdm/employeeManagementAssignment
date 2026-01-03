@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getEmployees } from "./employeeSlice";
+import { getEmployees, removeEmployee } from "./employeeSlice";
 import { useNavigate } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 export default function EmployeeList() {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export default function EmployeeList() {
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this employee?")) {
-      dispatch(deleteEmployee(id));
+      dispatch(removeEmployee(id));
     }
   };
 
@@ -44,6 +45,14 @@ export default function EmployeeList() {
   useEffect(() => {
     dispatch(getEmployees());
   }, []);
+
+  if (loading) {
+    return (
+      <div>
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="p-4">

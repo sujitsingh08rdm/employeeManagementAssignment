@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
-import { createEmployee, getEmployee, clearSelected } from "./employeeSlice";
+import {
+  createEmployee,
+  getEmployee,
+  clearSelected,
+  editEmployee,
+} from "./employeeSlice";
 
 const EmployeeForm = () => {
   const dispatch = useDispatch();
