@@ -1,0 +1,12 @@
+{
+  "employees": [],
+  "users": [
+    {
+      "id": 1,
+      "name": "admin",
+      "email": "admin@ems.com",
+      "password": "12345",
+      "role": "admin"
+    }
+  ]
+}
