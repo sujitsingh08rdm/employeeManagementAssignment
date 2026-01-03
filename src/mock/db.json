@@ -1,8 +1,27 @@
 {
-  "employees": [],
+  "employees": [
+    {
+      "id": "24a2",
+      "name": "Suji",
+      "gender": "male",
+      "dob": "2026-01-12",
+      "state": "Delhi",
+      "status": "active",
+      "image": "blob:http://localhost:5173/28fca5c1-cba3-4891-b7ea-36c536772317"
+    },
+    {
+      "id": "db82",
+      "name": "Simi Prasad",
+      "gender": "female",
+      "dob": "2025-11-10",
+      "state": "West Bengal",
+      "status": "inactive",
+      "image": "blob:http://localhost:5173/7c717fa4-acee-4081-8667-02ad29f8cd4e"
+    }
+  ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "admin",
       "email": "admin@ems.com",
       "password": "12345",

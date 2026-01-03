@@ -20,6 +20,8 @@ const LoginPage = () => {
       const users = await getUserByEmail(email);
       const user = users[0];
 
+      console.log(user);
+
       if (!user) {
         setError("User not found");
         return;
