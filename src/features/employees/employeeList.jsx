@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getEmployees, removeEmployee } from "./employeeSlice";
 import { useNavigate } from "react-router-dom";
-import { ClipLoader } from "react-spinners";
 
 export default function EmployeeList() {
   const dispatch = useDispatch();
@@ -11,7 +10,6 @@ export default function EmployeeList() {
   const [genderFilter, setGenderFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
   const { list, loading } = useSelector((store) => store.employee);
-  console.log(list, loading);
 
   const filteredEmployees = list.filter((emp) => {
     const matchesName = emp.name.toLowerCase().includes(search.toLowerCase());

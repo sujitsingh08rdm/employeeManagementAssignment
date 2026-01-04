@@ -8,6 +8,33 @@
       "state": "Bihar",
       "status": "active",
       "image": "blob:http://localhost:5173/32b64bf3-bafe-4a7b-a747-c6df159ec2c0"
+    },
+    {
+      "id": "2b79",
+      "name": "Suj",
+      "gender": "male",
+      "dob": "2025-12-30",
+      "state": "Delhi",
+      "status": "active",
+      "image": "blob:http://localhost:5173/b67af5c4-f302-4643-ade0-7416d5d9c023"
+    },
+    {
+      "id": "590e",
+      "name": "da",
+      "gender": "female",
+      "dob": "2025-12-30",
+      "state": "West Bengal",
+      "status": "active",
+      "image": "blob:http://localhost:5173/31617394-0320-4f99-9969-05fb23b5b87f"
+    },
+    {
+      "id": "37eb",
+      "name": "Dipesh",
+      "gender": "male",
+      "dob": "2026-01-08",
+      "state": "West Bengal",
+      "status": "inactive",
+      "image": "blob:http://localhost:5173/e3c31a52-907c-495b-a85c-1ff1a8acdd6c"
     }
   ],
   "users": [

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { getUserByEmail, setUserSession } from "../../api/authService";
@@ -43,12 +43,13 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <div className="flex items-center justify-center h-screen min-h-175 bg-gray-200">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded shadow-md w-80"
+        className="bg-white p-6 min-h-80 rounded shadow-md w-80"
       >
-        <h2 className="text-xl font-semibold mb-4 text-center">Login</h2>
+        <h2 className="text-2xl font-bold mb-2 text-center">EMS v1</h2>
+        <h3 className="text-xl font-semibold mb-4 text-center">Login</h3>
 
         <input
           type="email"
