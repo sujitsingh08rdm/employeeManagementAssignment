@@ -13,5 +13,6 @@ The user interface and experience are designed with simplicity and ease of navig
 Tech stack used : Redux Toolkit, Json server, TailwindCSS, lucide-react, react-router-dom, recharts, axios.
 
 Credentials : admin@ems.com for email and 12345 for password during login page.
+Please Use npm run dev for starting the client and npm run mock to start json-server.
 
 Currently, the employee management system i have created primarily for desktop web environments. Due to the limited screen size on mobile devices, the system may not display as effectively when accessed on smaller screens. As system displays employee information across multiple columns (7-8), which can lead to a cluttered or difficult-to-read layout on mobile devices. The sidebar and navigation menu are designed with desktop views in mind, and may not function optimally on mobile screens. This can result in a less user-friendly experience, particularly with limited space.
