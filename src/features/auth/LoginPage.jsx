@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { getUserByEmail, setUserSession } from "../../api/authService";
 import { loginSuccess } from "./authSlice";
+import Button from "../../components/ui/Button";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -71,12 +72,7 @@ const LoginPage = () => {
 
         {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
 
-        <button
-          type="submit"
-          className="bg-[#5044e5] text-white w-full py-2 rounded hover:opacity-90"
-        >
-          Login
-        </button>
+        <Button type="submit">Login</Button>
       </form>
     </div>
   );

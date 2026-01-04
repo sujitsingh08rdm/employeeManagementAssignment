@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/auth/authSlice";
+import Button from "../ui/Button";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -14,12 +15,7 @@ const Navbar = () => {
       <div className="flex items-center gap-4">
         <span className="text-sm font-medium text-gray-700">{user?.name}</span>
 
-        <button
-          onClick={() => dispatch(logout())}
-          className="bg-[#5044e5] text-white text-sm px-4 py-2 rounded hover:opacity-90 transition"
-        >
-          Logout
-        </button>
+        <Button onClick={() => dispatch(logout())}>Logout</Button>
       </div>
     </nav>
   );

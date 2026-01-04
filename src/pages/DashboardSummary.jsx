@@ -19,7 +19,7 @@ export default function DashboardSummary() {
   }, []);
 
   const totalEmployees = list.length;
-  console.log(list);
+
   const genderCount = list.reduce(
     (acc, emp) => {
       const gender = emp.gender.toLowerCase();
@@ -75,12 +75,10 @@ export default function DashboardSummary() {
     },
   ];
 
-  console.log(statusData);
-
   if (loading) {
     return (
-      <div>
-        <span className="loading loading-spinner loading-xl"></span>
+      <div className="flex justify-center items-center h-40">
+        <div className="w-8 h-8 border-4 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }

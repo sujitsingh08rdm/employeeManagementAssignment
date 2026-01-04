@@ -1,16 +1,17 @@
-# React + Vite
+Overview : I have developed a Client-Side Employee Management System. To simulate backend functionality, I utilized JSON Server as a mock API to handle employee data and authentication. The system features a hardcoded admin user within the JSON Server to facilitate login functionality.
+The system operates as follows:
+Login: Upon accessing the application, users are prompted to enter their credentials(Shared Below) on the login page. A successful login will redirect the user to the Dashboard page.
+Dashboard: The Dashboard offers an overview of the employee data with two key visualizations:
+a.A pie chart depicting the gender distribution (male/female employees).
+b.A pie chart showing the status of employees (active/inactive).
+Sidebar Navigation: A sidebar provides easy navigation to key sections of the system, including:
+Employee List: A comprehensive list of all employees.
+Add/Edit Employee: A unified form for both adding new employees and editing existing employee details.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The user interface and experience are designed with simplicity and ease of navigation in mind, ensuring an efficient flow for managing employee data.
 
-Currently, two official plugins are available:
+Tech stack used : Redux Toolkit, Json server, TailwindCSS, lucide-react, react-router-dom, recharts, axios.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Credentials : admin@ems.com for email and 12345 for password during login page.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Currently, the employee management system i have created primarily for desktop web environments. Due to the limited screen size on mobile devices, the system may not display as effectively when accessed on smaller screens. As system displays employee information across multiple columns (7-8), which can lead to a cluttered or difficult-to-read layout on mobile devices. The sidebar and navigation menu are designed with desktop views in mind, and may not function optimally on mobile screens. This can result in a less user-friendly experience, particularly with limited space.

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getEmployees, removeEmployee } from "./employeeSlice";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import Button from "../../components/ui/Button.jsx";
 
 export default function EmployeeList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const [search, setSearch] = useState("");
   const [genderFilter, setGenderFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
@@ -42,12 +44,14 @@ export default function EmployeeList() {
 
   useEffect(() => {
     dispatch(getEmployees());
-  }, []);
+  }, [location.pathname, dispatch]);
+
+  console.log("Loading state:", loading);
 
   if (loading) {
     return (
-      <div>
-        <span className="loading loading-spinner loading-xl"></span>
+      <div className="flex justify-center items-center h-40">
+        <div className="w-8 h-8 border-4 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -58,20 +62,12 @@ export default function EmployeeList() {
 
       <div className="flex gap-4">
         <div>
-          <button
-            onClick={() => navigate("/dashboard/employees/add")}
-            className="bg-[#5044e5] text-white px-4 py-2 rounded mb-4"
-          >
+          <Button onClick={() => navigate("/dashboard/employees/add")}>
             + Add Employee
-          </button>
+          </Button>
         </div>
         <div>
-          <button
-            onClick={handlePrint}
-            className="bg-[#5044e5] text-white px-4 py-2 rounded ml-3"
-          >
-            Print Employee List
-          </button>
+          <Button onClick={handlePrint}>Print Employee List</Button>
         </div>
         <div className="flex gap-3 mb-4">
           {/* Search by Name */}

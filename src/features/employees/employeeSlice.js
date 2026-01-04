@@ -58,7 +58,7 @@ export const removeEmployee = createAsyncThunk(
       await deleteEmployee(id);
       return id;
     } catch (error) {
-      rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -68,7 +68,7 @@ const employeeSlice = createSlice({
   initialState: {
     list: [],
     selectedEmployee: null,
-    loading: false,
+    loading: true,
     error: null,
   },
   reducers: {
@@ -93,12 +93,20 @@ const employeeSlice = createSlice({
       .addCase(getEmployee.fulfilled, (state, action) => {
         state.selectedEmployee = action.payload;
       })
+      .addCase(createEmployee.pending, (state, action) => {
+        state.loading = true;
+      })
       .addCase(createEmployee.fulfilled, (state, action) => {
-        state.list.push(action.payload);
+        state.loading = false;
+        // state.list.push(action.payload);
+      })
+      .addCase(createEmployee.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       })
       .addCase(editEmployee.fulfilled, (state, action) => {
         const index = state.list.findIndex(
-          (emp) => emp.id === action.payload.id
+          (emp) => String(emp.id) === String(action.payload.id)
         );
         if (index !== -1) {
           state.list[index] = action.payload;

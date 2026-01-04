@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
+
 import {
   createEmployee,
   getEmployee,
   clearSelected,
   editEmployee,
 } from "./employeeSlice";
+import Button from "../../components/ui/Button";
 
 const EmployeeForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { id } = useParams();
 
   const { selectedEmployee } = useSelector((state) => state.employee);
@@ -24,6 +27,7 @@ const EmployeeForm = () => {
     status: "active",
     image: "",
   });
+  const [formErrors, setFormErrors] = useState({});
 
   const states = [
     "Maharashtra",
@@ -60,20 +64,79 @@ const EmployeeForm = () => {
     const file = e.target.files[0];
     if (!file) return;
 
-    const imgURL = URL.createObjectURL(file);
-    setPreview(imgURL);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setFormData((prev) => ({ ...prev, image: reader.result }));
+      setPreview(reader.result);
+    };
 
-    setFormData({ ...formData, image: imgURL });
+    // const imgURL = URL.createObjectURL(file);
+    // setPreview(imgURL);
+
+    // setFormData({ ...formData, image: imgURL });
+  };
+
+  // Form Validation function
+  const validate = () => {
+    const errors = {};
+
+    // Full Name
+    if (!formData.name.trim()) {
+      errors.name = "Full Name is required";
+    } else if (formData.name.length < 3) {
+      errors.name = "Name must be at least 3 characters";
+    }
+
+    // Gender
+    if (!formData.gender) {
+      errors.gender = "Gender is required";
+    }
+
+    // DOB
+    if (!formData.dob) {
+      errors.dob = "Date of Birth is required";
+    } else {
+      const age =
+        new Date().getFullYear() - new Date(formData.dob).getFullYear();
+      if (age < 18) {
+        errors.dob = "Employee must be at least 18 years old";
+      } else if (age > 100) {
+        errors.dob = "Employee must be less then 100 years old";
+      }
+    }
+
+    // State
+    if (!formData.state) {
+      errors.state = "State is required";
+    }
+
+    // Status
+    if (!formData.status) {
+      errors.status = "Status is required";
+    }
+
+    // Image (optional, but can enforce)
+    if (!formData.image) {
+      errors.image = "Profile image is required";
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (id) dispatch(editEmployee({ id, data: formData }));
-    else dispatch(createEmployee(formData));
+    if (validate()) {
+      if (id) dispatch(editEmployee({ id, data: formData }));
+      else dispatch(createEmployee(formData));
 
-    dispatch(clearSelected());
-    navigate("/dashboard/employees");
+      dispatch(clearSelected());
+      navigate("/dashboard/employees");
+    } else {
+      console.log("Form Validation failed");
+    }
   };
 
   const handleCancel = () => {
@@ -100,6 +163,9 @@ const EmployeeForm = () => {
             onChange={handleChange}
             required
           />
+          {formErrors.name && (
+            <p className="text-red-400 text-sm mt-1">{formErrors.name}</p>
+          )}
         </div>
 
         {/* Gender */}
@@ -117,6 +183,9 @@ const EmployeeForm = () => {
             <option value="female">Female</option>
             <option value="other">Other</option>
           </select>
+          {formErrors.gender && (
+            <p className="text-red-400 text-sm mt-1">{formErrors.gender}</p>
+          )}
         </div>
 
         {/* DOB */}
@@ -132,6 +201,9 @@ const EmployeeForm = () => {
             onChange={handleChange}
             required
           />
+          {formErrors.dob && (
+            <p className="text-red-400 text-sm mt-1">{formErrors.dob}</p>
+          )}
         </div>
 
         {/* State */}
@@ -151,6 +223,9 @@ const EmployeeForm = () => {
               </option>
             ))}
           </select>
+          {formErrors.state && (
+            <p className="text-red-400 text-sm mt-1">{formErrors.state}</p>
+          )}
         </div>
 
         {/* Active/Inactive */}
@@ -178,6 +253,9 @@ const EmployeeForm = () => {
             />
             Inactive
           </label>
+          {formErrors.status && (
+            <p className="text-red-400 text-sm mt-1">{formErrors.status}</p>
+          )}
         </div>
 
         {/* Image Upload + Preview */}
@@ -201,24 +279,26 @@ const EmployeeForm = () => {
               />
             </div>
           )}
+          {formErrors.image && (
+            <p className="text-red-400 text-sm mt-1">{formErrors.image}</p>
+          )}
         </div>
 
         {/* Submit/Cancel */}
         <div className="flex gap-3 mt-4">
-          <button
-            type="submit"
-            className="bg-[#5044e5] text-white w-full py-2 rounded hover:opacity-90"
-          >
+          <Button type="submit">
             {id ? "Update Employee" : "Add Employee"}
-          </button>
+          </Button>
 
-          <button
+          <Button
             type="button"
             onClick={handleCancel}
-            className="border text-gray-700 w-full py-2 rounded hover:bg-gray-50"
+            color="border"
+            textColor="text-gray-700"
+            border={true}
           >
             Cancel
-          </button>
+          </Button>
         </div>
       </form>
     </div>
